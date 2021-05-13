@@ -558,7 +558,7 @@ export class MockFluidDataStoreRuntime extends EventEmitter
 
     public raiseContainerWarning(warning: ContainerWarning): void { }
 
-    public resubmit(content: any, localOpMetadata: unknown) {
+    reSubmit(type: string, content: any, localOpMetadata: unknown) {
         return;
     }
 

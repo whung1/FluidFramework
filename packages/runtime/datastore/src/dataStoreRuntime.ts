@@ -857,7 +857,7 @@ IFluidDataStoreChannel, IFluidDataStoreRuntime, IFluidHandleContext {
      * @param content - The content of the original message.
      * @param localOpMetadata - The local metadata associated with the original message.
      */
-    public resubmit(type: DataStoreMessageType, content: any, localOpMetadata: unknown) {
+    public reSubmit(type: DataStoreMessageType, content: any, localOpMetadata: unknown) {
         this.verifyNotClosed();
 
         switch (type) {
