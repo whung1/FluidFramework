@@ -89,7 +89,6 @@
     "@fluidframework/sequence": "^0.40.0",
     "@fluidframework/shared-object-base": "^0.40.0",
     "@fluidframework/telemetry-utils": "^0.40.0",
-    "@fluidframework/test-drivers": "^0.40.0",
     "@fluidframework/test-driver-definitions": "^0.40.0",
     "@fluidframework/test-loader-utils": "^0.40.0",
     "@fluidframework/test-runtime-utils": "^0.40.0",
