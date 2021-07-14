@@ -4,7 +4,7 @@
  */
 
 const odspTenants = new Map<string, string>([
-    ["spo", "microsoft-my.sharepoint.com"],
+    ["spo", "devtestmfs-my.sharepoint.com"],
     ["spo-df", "microsoft-my.sharepoint-df.com"],
 ]);
 
@@ -13,6 +13,9 @@ export function isOdspHostname(hostname: string) {
 }
 
 export function getAadTenant(hostname: string) {
+    // TEMP
+    console.log(`hostname: ${hostname}`);
+
     let tenantName = hostname.substr(0, hostname.indexOf(".")).toLowerCase();
     let restOfTenantHostname = hostname.substr(tenantName.length).toLowerCase();
 
@@ -28,6 +31,7 @@ export function getAadTenant(hostname: string) {
         restOfTenantHostname = `.onmicrosoft.${restOfTenantHostname.substr(15)}`;
     }
 
+    console.log(`constructedTenant: ${tenantName}${restOfTenantHostname}`);
     return `${tenantName}${restOfTenantHostname}`;
 }
 

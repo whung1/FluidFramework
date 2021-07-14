@@ -135,6 +135,7 @@ export const after = (app: express.Application, server: WebpackDevServer, baseDi
                         true /* forceRefresh */,
                         options.forceReauth,
                     );
+                    console.log(`odspToken ${options.odspAccessToken}`);
                     odspAuthStage = 1;
                     return false;
                 }
@@ -148,6 +149,7 @@ export const after = (app: express.Application, server: WebpackDevServer, baseDi
                     true /* forceRefresh */,
                     options.forceReauth,
                 );
+                console.log(`pushAccessToken ${options.pushAccessToken}`);
                 odspAuthStage = 2;
                 return false;
             } finally {
@@ -173,6 +175,7 @@ export const after = (app: express.Application, server: WebpackDevServer, baseDi
             undefined /* forceRefresh */,
             true /* forceReauth */,
         );
+        console.log(`odspToken ${options.odspAccessToken}`);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -189,6 +192,8 @@ export const after = (app: express.Application, server: WebpackDevServer, baseDi
             undefined /* forceRefresh */,
             true /* forceReauth */,
         )).accessToken;
+
+        console.log(`pushAccessToken ${options.pushAccessToken}`);
     });
 
     app.get("/file*", (req, res) => {

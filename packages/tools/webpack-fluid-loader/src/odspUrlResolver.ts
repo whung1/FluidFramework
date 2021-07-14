@@ -21,16 +21,27 @@ export class OdspUrlResolver implements IUrlResolver {
 
     public async resolve(request: IRequest): Promise<IResolvedUrl> {
         try {
+            console.log("resolve");
+            console.log(request);
+            console.log(request.url);
+            console.log(request.headers);
             const resolvedUrl = await this.driverUrlResolver.resolve(request);
             return resolvedUrl;
         } catch (error) { }
 
+        console.log("starting alt resolver...");
         const url = new URL(request.url);
+        console.log(`url:${url}`);
 
         const fullPath = url.pathname.substr(1);
         const documentId = fullPath.split("/")[0];
         const dataStorePath = fullPath.slice(documentId.length + 1);
         const filePath = this.formFilePath(documentId);
+
+        console.log(`fullPath:${fullPath}`);
+        console.log(`documentId:${documentId}`);
+        console.log(`dataStorePath:${dataStorePath}`);
+        console.log(`filePath:${filePath}`);
 
         const { driveId, itemId } = await getDriveItemByRootFileName(
             this.server,
@@ -39,6 +50,9 @@ export class OdspUrlResolver implements IUrlResolver {
             this.authRequestInfo,
             true);
 
+        console.log(`driveId:${driveId}`);
+        console.log(`itemId:${itemId}`);
+
         const odspUrl = createOdspUrl({
             siteUrl:`https://${this.server}`,
             driveId,
@@ -46,6 +60,8 @@ export class OdspUrlResolver implements IUrlResolver {
             dataStorePath,
         });
 
+        console.log(`odspUrl:${odspUrl}`);
+        console.log(`request.headers:${request.headers}`);
         return this.driverUrlResolver.resolve({ url: odspUrl, headers: request.headers });
     }
 
